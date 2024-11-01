@@ -12,14 +12,15 @@ public class PlayerController : MonoBehaviour
     public float mouseSensitivity;
     public bool invertX;
     public bool invertY;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // 移動処理
         Vector3 verMove = transform.forward * Input.GetAxis("Vertical");
         Vector3 horiMove = transform.right * Input.GetAxis("Horizontal");
 
@@ -29,18 +30,31 @@ public class PlayerController : MonoBehaviour
 
         charaCon.Move(moveInput * Time.deltaTime);
 
-        //カメラの回転制御
-        Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
-        if (invertX)//マウス反転したいなら。
+        // 右クリックが押されているときのみカメラを回転
+        if (Input.GetMouseButton(1)) // 1は右クリック
         {
-            mouseInput.x = -mouseInput.x;
+            Vector2 mouseInput = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")) * mouseSensitivity;
+
+            if (invertX)
+            {
+                mouseInput.x = -mouseInput.x;
+            }
+            if (invertY)
+            {
+                mouseInput.y = -mouseInput.y;
+            }
+
+            // プレイヤーの水平回転
+            transform.rotation = Quaternion.Euler(
+                transform.rotation.eulerAngles.x,
+                transform.rotation.eulerAngles.y + mouseInput.x,
+                transform.rotation.eulerAngles.z
+            );
+
+            // カメラの垂直回転
+            camTrans.rotation = Quaternion.Euler(
+                camTrans.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f)
+            );
         }
-        if (invertY)
-        {
-            mouseInput.y = -mouseInput.y;
-        }
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + mouseInput.x, transform.rotation.eulerAngles.z);
-        camTrans.rotation = Quaternion.Euler(camTrans.rotation.eulerAngles + new Vector3(-mouseInput.y, 0f, 0f));
     }
 }
-
