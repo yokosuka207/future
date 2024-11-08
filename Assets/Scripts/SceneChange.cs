@@ -10,10 +10,10 @@ public class SceneChange : MonoBehaviour
     void Update()
     {
         // 任意のキーが押された場合
-        if (Input.anyKey)
-        {
-            // 指定したシーンに遷移します
-            SceneManager.LoadScene(sceneName);
-        }
+        //if (Input.anyKey)
+        //{
+        //    // 指定したシーンに遷移します
+        //    SceneManager.LoadScene(sceneName);
+        //}
     }
 }
