@@ -5,15 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
-    public string sceneName;
+    [SerializeField]
+    private string sceneName; // 遷移先のシーン名をInspectorで指定
 
-    void Update()
+    [SerializeField]
+    private KeyCode transitionKey = KeyCode.None; // シーン遷移をトリガーするキーをInspectorで指定
+
+    public static SceneChange instance;
+
+    public void Awake()
     {
-        // 任意のキーが押された場合
-        //if (Input.anyKey)
-        //{
-        //    // 指定したシーンに遷移します
-        //    SceneManager.LoadScene(sceneName);
-        //}
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public void ChangeScene()
+    {
+        if (!string.IsNullOrEmpty(sceneName))
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError("シーン名が指定されていません！");
+        }
+    }
+
+    private void Update()
+    {
+        // 指定したキーが押された場合にシーン遷移を実行
+        if (transitionKey != KeyCode.None && Input.GetKeyDown(transitionKey))
+        {
+            ChangeScene();
+        }
     }
 }
