@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89bd4bd8e5f20ab458dabbfa5c0fc56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 2915212237531448134, guid: 4a312523810cdc44fb3dda77cf8ad3a2, type: 3}
-  mainCamera: {fileID: 0}
+  objectsToSpawn:
+  - {fileID: 2915212237531448134, guid: 4a312523810cdc44fb3dda77cf8ad3a2, type: 3}
+  - {fileID: 6589122028587439507, guid: 1117006ecb6c43742badab70a91a22ed, type: 3}
+  - {fileID: 4248711662924536402, guid: 3e8b585610fed6145a9888d958baa045, type: 3}
+  cameraController: {fileID: 0}
   spawnDistance: 5
   scrollSpeed: 2
   spawnDistanceMin: 1
   spawnDistanceMax: 20
-  transparentMaterial: {fileID: 2100000, guid: f9c241aed7e373248a49b980ae518607, type: 2}

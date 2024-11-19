@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class ShockwaveCollider : MonoBehaviour
 {
-    public int damage = 10; // 衝撃波が与えるダメージ量
+    [SerializeField] private int damege;
 
-    // 衝撃波が他のオブジェクトに触れたときに呼び出される
-    private void OnTriggerEnter(Collider other)
+    private void OnParticleCollision(GameObject other)
     {
-        // 当たったオブジェクトが「Enemy」タグを持つ場合にダメージを与える
-        if (other.CompareTag("Enemy"))
+        if(other.gameObject.CompareTag("Player"))
         {
-            //Enemy enemy = other.GetComponent<Enemy>();
-            //if (enemy != null)
-            //{
-              //  enemy.TakeDamage(damage); // 敵にダメージを与える
-            //}
+            Debug.Log("当たった");
         }
+    }
+
+    public int Damege()
+    {
+        return damege;
     }
 }

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4349109434539016222}
   - component: {fileID: 9007780709258202289}
-  - component: {fileID: 599548505813915732}
   m_Layer: 0
   m_Name: ShookSpawn
   m_TagString: Untagged
@@ -52,16 +51,4 @@ MonoBehaviour:
   - 5
   startTimes:
   - 2
---- !u!114 &599548505813915732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2554966424320793127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f4664632101af4aaac078c39219efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageAmount: 10
+  damege: 0
