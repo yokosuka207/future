@@ -3,7 +3,7 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     public GameObject[] objectsToSpawn;       // 生成するオブジェクトの配列
-    public CC cameraController;              // カメラ切り替えスクリプト
+    public CameraControll cameraController;              // カメラ切り替えスクリプト
     public float spawnDistance = 5.0f;
     public float scrollSpeed = 2.0f;
     public float spawnDistanceMin = 1.0f;

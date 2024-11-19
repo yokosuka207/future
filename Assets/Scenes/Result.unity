@@ -351,6 +351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Title
+  transitionKey: 282
+  fadeDuration: 1
+  fadeImage: {fileID: 0}
 --- !u!4 &1066446803
 Transform:
   m_ObjectHideFlags: 0
