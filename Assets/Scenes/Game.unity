@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1369505999}
-  followSpeed: 5
+  followSpeed: 1
 --- !u!1 &807259882
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1369505999}
-  followSpeed: 5
+  followSpeed: 1
 --- !u!81 &807259884
 AudioListener:
   m_ObjectHideFlags: 0

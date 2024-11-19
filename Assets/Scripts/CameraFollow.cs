@@ -4,17 +4,39 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Vector3 diff;       //カメラとプレイヤーの距離
-    [SerializeField] private GameObject target;  //追従するターゲットオブジェクト
-    public float followSpeed;   //追従するスピード
+    [SerializeField] private GameObject target;  // 追従するターゲットオブジェクト
+    [SerializeField] private Vector3 offset = new Vector3(0, 5, -10); // 初期オフセット値
+    [SerializeField] private float followSpeed = 5f; // 追従速度
 
     void Start()
     {
-        diff = target.transform.position - this.transform.position;     //カメラとプレイヤーの初期の距離を指定
+        // カメラを初期オフセット位置に配置
+        if (target != null)
+        {
+            transform.position = target.transform.position + offset;
+        }
+        else
+        {
+            Debug.LogWarning("Target is not assigned in CameraFollow script.");
+        }
     }
 
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(this.transform.position, target.transform.position - diff, Time.deltaTime * followSpeed);     //線形補間関数によるカメラの移動
+        if (target != null)
+        {
+            // ターゲットの位置にオフセットを加えた位置へカメラを移動
+            Vector3 targetPosition = target.transform.position + offset;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
+        }
+    }
+
+    private void Reset()
+    {
+        // ターゲットが設定されている場合、初期オフセットを計算
+        if (target != null)
+        {
+            offset = transform.position - target.transform.position;
+        }
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class MoveSample : MonoBehaviour
 {
 
-
     Vector3 direction = new Vector3(10f, 0f, 0f);
 
     [SerializeField] private float speed = 1.0f;
