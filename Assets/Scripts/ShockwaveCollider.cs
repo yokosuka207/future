@@ -4,18 +4,49 @@ using UnityEngine;
 
 public class ShockwaveCollider : MonoBehaviour
 {
-    [SerializeField] private int damege;
+    [SerializeField] private int damage; // ダメージ量
+    [SerializeField] private float growthRate = 1.0f; // 拡大速度
+    [SerializeField] private float maxScale = 5.0f; // 最大スケール
 
-    private void OnParticleCollision(GameObject other)
+    private SphereCollider sphereCollider;
+    // ダメージ量を返すプロパティ
+    public int Damage()
     {
-        if(other.gameObject.CompareTag("Player"))
+        return damage;
+    }
+
+    private void Start()
+    {
+        // SphereColliderを取得
+        sphereCollider = GetComponent<SphereCollider>();
+        if (sphereCollider == null)
         {
-            Debug.Log("当たった");
+            Debug.LogError("ShockwaveCollider requires a SphereCollider.");
+        }
+    }
+    private void Update()
+    {
+        // Shockwaveのスケールを徐々に拡大
+        if (transform.localScale.x < maxScale)
+        {
+            float scaleIncrement = growthRate * Time.deltaTime;
+            transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
+
+            // コライダーの半径をスケールに同期
+            if (sphereCollider != null)
+            {
+                sphereCollider.radius = transform.localScale.x / 2.0f;
+            }
         }
     }
 
-    public int Damege()
+    // トリガーコライダーで他のオブジェクトと衝突したときに呼ばれる
+    private void OnTriggerEnter(Collider other)
     {
-        return damege;
+        // 衝突した相手が"Damageable"タグを持っているか確認
+        if (other.CompareTag("Player"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

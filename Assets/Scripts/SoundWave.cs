@@ -43,7 +43,7 @@ public class SoundWave : MonoBehaviour
         ss = obj.GetComponent<ShockwaveCollider>();
 
         // ダメージ計算
-        currentHealth -= ss.Damege();
+        currentHealth -= ss.Damage();
 
         Debug.Log(currentHealth);
 
