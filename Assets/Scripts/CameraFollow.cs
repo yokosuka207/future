@@ -4,17 +4,48 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    private Vector3 diff;       //カメラとプレイヤーの距離
-    [SerializeField] private GameObject target;  //追従するターゲットオブジェクト
-    public float followSpeed;   //追従するスピード
+    [SerializeField] private GameObject target;      // 追従するターゲットオブジェクト
+    [SerializeField] private Vector3 offset = new Vector3(0, 5, -10); // カメラの初期オフセット
+    [SerializeField] private float followSpeed = 5f; // 追従速度
+    [SerializeField] private Vector3 rotationAngles = new Vector3(30, 0, 0); // カメラの回転角度
 
     void Start()
     {
-        diff = target.transform.position - this.transform.position;     //カメラとプレイヤーの初期の距離を指定
+        if (target != null)
+        {
+            // 初期位置を設定
+            transform.position = target.transform.position + offset;
+
+            // 初期回転を設定
+            transform.rotation = Quaternion.Euler(rotationAngles);
+        }
+        else
+        {
+            Debug.LogWarning("Target is not assigned in CameraFollow script.");
+        }
     }
 
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(this.transform.position, target.transform.position - diff, Time.deltaTime * followSpeed);     //線形補間関数によるカメラの移動
+        if (target != null)
+        {
+            // ターゲットに基づいてカメラ位置を計算
+            Vector3 targetPosition = target.transform.position + offset;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
+
+            // カメラ回転を線形補間で変更
+            Quaternion targetRotation = Quaternion.Euler(rotationAngles);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * followSpeed);
+        }
+    }
+
+    private void Reset()
+    {
+        if (target != null)
+        {
+            // 初期オフセットと回転角度をターゲットに基づいて設定
+            offset = transform.position - target.transform.position;
+            rotationAngles = transform.rotation.eulerAngles;
+        }
     }
 }
