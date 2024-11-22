@@ -17,6 +17,7 @@ public class ShockwaveCollider : MonoBehaviour
 
     private void Start()
     {
+        maxScale = this.transform.parent.GetComponent<ShockwaveSpawnerDemo>().duration;
         // SphereColliderを取得
         sphereCollider = GetComponent<SphereCollider>();
         if (sphereCollider == null)
@@ -46,7 +47,12 @@ public class ShockwaveCollider : MonoBehaviour
         // 衝突した相手が"Damageable"タグを持っているか確認
         if (other.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            this.transform.parent.GetComponent<ShockwaveSpawnerDemo>().SoundBlock();
+        }
+
+        if (other.CompareTag("Diffence"))
+        {
+            this.transform.parent.GetComponent<ShockwaveSpawnerDemo>().SoundBlock();
         }
     }
 }

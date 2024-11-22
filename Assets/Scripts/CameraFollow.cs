@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private GameObject target;      // 追従するターゲットオブジェクト
     [SerializeField] private Vector3 offset = new Vector3(0, 5, -10); // カメラの初期オフセット
     [SerializeField] private float followSpeed = 5f; // 追従速度
-    [SerializeField] private Vector3 rotationAngles = new Vector3(30, 0, 0); // カメラの回転角度
+    [SerializeField] private Vector3 rotationAngles = new Vector3(0, 90, 40); // カメラの回転角度
 
     void Start()
     {

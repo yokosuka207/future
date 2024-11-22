@@ -8,7 +8,7 @@ public class SoundWave : MonoBehaviour
     private int currentHealth;                    // åªç›ÇÃHP
 
     [SerializeField] private float speed = 1.0f;  // à⁄ìÆë¨ìx
-    private Vector3 direction = new Vector3(10f, 0f, 0f);
+    [SerializeField] private GameObject target;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class SoundWave : MonoBehaviour
     {
         // à⁄ìÆ
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, direction, step);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
     }
 
     private void OnTriggerEnter(Collider other)
