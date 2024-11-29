@@ -228,7 +228,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1369505999}
+  offset: {x: 0, y: 5, z: -10}
   followSpeed: 5
+  rotationAngles: {x: 0, y: 0, z: 0}
 --- !u!1 &775269687
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1369505999}
+  offset: {x: 0, y: 5, z: -10}
   followSpeed: 5
+  rotationAngles: {x: 0, y: 90, z: 40}
 --- !u!81 &807259884
 AudioListener:
   m_ObjectHideFlags: 0
@@ -736,6 +740,10 @@ PrefabInstance:
       propertyPath: fadeImage
       value: 
       objectReference: {fileID: 775269689}
+    - target: {fileID: 6455573071855223838, guid: 3750cff39b9f9244d84326b1e941745b, type: 3}
+      propertyPath: sceneName
+      value: GameTest_ota
+      objectReference: {fileID: 0}
     - target: {fileID: 6455573071855223838, guid: 3750cff39b9f9244d84326b1e941745b, type: 3}
       propertyPath: transitionKey
       value: 116
