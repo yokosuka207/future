@@ -6,6 +6,7 @@ public class GameOverTrigger : MonoBehaviour
 {
     public string sceneName;
     [SerializeField] private GameObject effectObj;
+    [SerializeField] private GameObject sceneManager;
 
     // トリガーコライダーに他のオブジェクトが触れたときに呼び出されるメソッド
     private void OnTriggerEnter(Collider other)
@@ -40,6 +41,7 @@ public class GameOverTrigger : MonoBehaviour
         Destroy(particle);
 
         // シーンを遷移
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(sceneManager.GetComponent<SceneChange>().ChangeScene());
+        //SceneManager.LoadScene(sceneName);
     }
 }

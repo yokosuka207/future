@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundWave : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100; // 最大HP
-    private int currentHealth;                    // 現在のHP
+    public int currentHealth;                    // 現在のHP
 
     [SerializeField] private float speed = 1.0f;  // 移動速度
     [SerializeField] private GameObject target;
+
+    [SerializeField] private Slider HPbar;
+
+    //public CameraShake mainCameraShake;
+    //public CameraShake subCameraShake;
 
     private void Start()
     {
@@ -45,6 +51,17 @@ public class SoundWave : MonoBehaviour
         // ダメージ計算
         currentHealth -= ss.Damage();
 
+        //HPバーの減少
+        HPbar.GetComponent<HPBarController>().HealthDecreese();
+        
+
+        //// メインカメラを揺らす
+        //StartCoroutine(mainCameraShake.Shake());
+
+        //// サブカメラを揺らす
+        //StartCoroutine(subCameraShake.Shake());
+
+
         Debug.Log(currentHealth);
 
         // 死亡処理
@@ -53,4 +70,6 @@ public class SoundWave : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
 }
