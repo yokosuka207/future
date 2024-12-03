@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameTest_ota.unity
     guid: beb043b17941fc84a95ad3ea5a36fe82
+  - enabled: 1
+    path: Assets/Scenes/Restart.unity
+    guid: d3c792c5c602a424e97f40afef81c543
   m_configObjects: {}
