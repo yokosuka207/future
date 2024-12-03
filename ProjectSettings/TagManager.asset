@@ -7,6 +7,10 @@ TagManager:
   - ShockWave
   - Goal
   - Diffence
+  - Acceleration
+  - Deceleration
+  - Repetto
+  - ShrinkTrigger
   layers:
   - Default
   - TransparentFX

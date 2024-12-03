@@ -51,7 +51,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -3869,7 +3869,10 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
-    primitives: []
+    primitives:
+    - {fileID: 5732090240421857919, guid: 3e8b585610fed6145a9888d958baa045, type: 3}
+    - {fileID: 7914476091263314613, guid: 1117006ecb6c43742badab70a91a22ed, type: 3}
+    - {fileID: 7123143595378232350, guid: 4a312523810cdc44fb3dda77cf8ad3a2, type: 3}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -4938,7 +4941,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1707504051623761210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4954,3 +4957,4 @@ MonoBehaviour:
   damage: 5
   growthRate: 1
   maxScale: 5
+  accelerationForce: 5
