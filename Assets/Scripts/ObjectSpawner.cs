@@ -10,14 +10,14 @@ public class ObjectSpawner : MonoBehaviour
     public float spawnDistanceMin = 1.0f;
     public float spawnDistanceMax = 20.0f;
     public ObjectPlacementLimit[] placementLimits; // オブジェクトごとの設定
-    public GameObject diffenceUI;
-
+    
     private Material originalMaterial;
     private GameObject previewObject;        // 仮置きオブジェクト
     private bool isPreviewing = false;       // 仮置き状態フラグ
     private Vector3 previewWorldPosition;    // 仮置きオブジェクトのワールド座標
     private int currentObjectIndex = 0;      // 現在のオブジェクトインデックス
     private Dictionary<GameObject, ObjectPlacementLimit> placementLimitsDict;   // 辞書に変換して管理
+    private Dictionary<GameObject, int> objectUsageCounts = new Dictionary<GameObject, int>();
 
 
     [System.Serializable]
@@ -56,6 +56,9 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
+        // シーンをまたいでオブジェクトを保持する
+        DontDestroyOnLoad(gameObject);
+
         placementLimitsDict = new Dictionary<GameObject, ObjectPlacementLimit>();
 
         // 初期オブジェクトを数字キー「1」に対応
@@ -71,9 +74,12 @@ public class ObjectSpawner : MonoBehaviour
             {
                 placementLimitsDict[limit.objectType] = limit;
                 limit.currentCount = 0; // 初期化
+                objectUsageCounts[limit.objectType] = 0; // 使用回数を初期化
             }
         }
     }
+
+
 
 
     void HandleObjectSwitch()
@@ -143,8 +149,16 @@ public class ObjectSpawner : MonoBehaviour
             renderer.material = transparentMat;
         }
 
+        // 仮置き状態にするためにColliderを無効化
+        Collider collider = previewObject.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
         isPreviewing = true; // 仮置き状態を設定
     }
+
 
 
 
@@ -179,11 +193,27 @@ public class ObjectSpawner : MonoBehaviour
             }
 
             // カウントを更新
-            placementLimits[currentObjectIndex].currentCount++;
+            limit.currentCount++;
 
+            // 使用回数を更新
+            if (objectUsageCounts.ContainsKey(currentObject))
+            {
+                objectUsageCounts[currentObject]++;
+            }
+            else
+            {
+                objectUsageCounts[currentObject] = 1;
+            }
         }
 
         if (!previewObject.activeSelf) return;
+
+        // 確定配置時にColliderを有効化
+        Collider collider = previewObject.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = true;
+        }
 
         // 確定配置時にマテリアルを元に戻す
         Renderer renderer = previewObject.GetComponent<Renderer>();
@@ -192,12 +222,11 @@ public class ObjectSpawner : MonoBehaviour
             renderer.material = originalMaterial;
         }
 
-        //UIの数値も更新
-        diffenceUI.GetComponent<UIDiffenceCount>().CheckDiffenceNum(currentObjectIndex);
-
         previewObject = null;
         isPreviewing = false;
     }
+
+
 
 
 
@@ -216,5 +245,4 @@ public class ObjectSpawner : MonoBehaviour
             limit.currentCount = 0;
         }
     }
-
 }

@@ -123,6 +123,8 @@ GameObject:
   - component: {fileID: 8514449613469605546}
   - component: {fileID: 2631589438877380752}
   - component: {fileID: 6905897429584092225}
+  - component: {fileID: 2654317536003200729}
+  - component: {fileID: -8295541919275367136}
   m_Layer: 0
   m_Name: SoundWaveSpawn
   m_TagString: Player
@@ -210,7 +212,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   speed: 3
+  target: {fileID: 0}
+  HPbar: {fileID: 0}
 --- !u!54 &2631589438877380752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -259,6 +264,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2654317536003200729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545512942662327019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad9983e4a5b62748a4158bb0c36f06f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCameraShake: {fileID: 0}
+  subCameraShake: {fileID: 0}
+--- !u!114 &-8295541919275367136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545512942662327019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f54cb83307996847b06495465cd1641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.5
+  magnitude: 0.2
 --- !u!1 &8460499604487073819
 GameObject:
   m_ObjectHideFlags: 0
