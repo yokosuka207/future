@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1661192739719602041}
   m_Layer: 0
   m_Name: SpawnCapsule
-  m_TagString: Untagged
+  m_TagString: Acceleration
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
