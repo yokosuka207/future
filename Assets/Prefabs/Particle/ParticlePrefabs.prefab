@@ -4956,5 +4956,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   growthRate: 1
+  maxGrowthRate: 30
+  growthAcceleration: 0.1
+  growthDeceleration: 0.001
+  minGrowthRate: 0.001
+  shrinkRate: 100
+  minScale: 1
   maxScale: 5
-  accelerationForce: 5
+  accelerationBoost: 10
