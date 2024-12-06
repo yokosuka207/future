@@ -7,10 +7,9 @@ TagManager:
   - ShockWave
   - Goal
   - Diffence
-  - Acceleration
-  - Deceleration
-  - Repetto
-  - ShrinkTrigger
+  - Radar
+  - DefenseMechanism
+  - SceneManager
   layers:
   - Default
   - TransparentFX

@@ -85,6 +85,7 @@ public class SceneChange : MonoBehaviour
         // ƒV[ƒ“‘JˆÚ
         if (!string.IsNullOrEmpty(sceneName))
         {
+            
             SceneManager.LoadScene(sceneName);
         }
         else

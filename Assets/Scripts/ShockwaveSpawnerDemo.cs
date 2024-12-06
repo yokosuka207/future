@@ -34,10 +34,13 @@ public class ShockwaveSpawnerDemo : MonoBehaviour
         GameObject shockwave = Instantiate(shockwavePrefab, position, Quaternion.identity);
         shockwave.transform.parent = this.transform;
 
-        audioSource.PlayOneShot(sound1);
-        Debug.Log("sound");
+        //レーダーに移す用
+        GameObject.FindWithTag("Radar").GetComponent<RadarController>().SpownRadarShock(shockwave);
 
-        Invoke(nameof(SoundOff), duration);
+        //サウンドを流す
+        audioSource.PlayOneShot(sound1);
+
+        //Invoke(nameof(SoundOff), duration);
         
     }
 
