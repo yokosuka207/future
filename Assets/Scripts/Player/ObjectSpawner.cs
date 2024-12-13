@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ObjectSpawner : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class ObjectSpawner : MonoBehaviour
     private Dictionary<GameObject, ObjectPlacementLimit> placementLimitsDict;   // 辞書に変換して管理
     private Dictionary<GameObject, int> objectUsageCounts = new Dictionary<GameObject, int>();
 
+    private Vector2 leftStickInput = Vector2.zero;
+    private Vector2 rightStickInput = Vector2.zero;
 
     [System.Serializable]
     public class ObjectPlacementLimit
@@ -165,15 +168,41 @@ public class ObjectSpawner : MonoBehaviour
 
     void UpdatePreviewPosition()
     {
+        //// 現在のアクティブなカメラを取得
+        //Camera activeCamera = cameraController.ActiveCamera;
+
+        //// マウス位置をスクリーン座標として取得
+        //Vector3 mousePosition = Input.mousePosition;
+        //mousePosition.z = spawnDistance; // カメラからの距離を設定
+
+        //// スクリーン座標をワールド座標に変換
+        //previewWorldPosition = activeCamera.ScreenToWorldPoint(mousePosition);
+
+        //// 仮置きオブジェクトの位置を更新
+        //previewObject.transform.position = previewWorldPosition;
+        //previewObject.transform.rotation = Quaternion.identity;
+
         // 現在のアクティブなカメラを取得
         Camera activeCamera = cameraController.ActiveCamera;
 
-        // マウス位置をスクリーン座標として取得
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = spawnDistance; // カメラからの距離を設定
+        // マウス入力が有効な場合
+        if (Input.mousePresent)
+        {
+            // マウス位置をスクリーン座標として取得
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = spawnDistance; // カメラからの距離を設定
 
-        // スクリーン座標をワールド座標に変換
-        previewWorldPosition = activeCamera.ScreenToWorldPoint(mousePosition);
+            // スクリーン座標をワールド座標に変換
+            previewWorldPosition = activeCamera.ScreenToWorldPoint(mousePosition);
+        }
+
+        // コントローラーの左スティック入力が有効な場合
+        if (Gamepad.current != null && leftStickInput != Vector2.zero)
+        {
+            // コントローラーの左スティック入力をカメラの方向に変換
+            Vector3 controllerOffset = new Vector3(leftStickInput.x, leftStickInput.y, 0) * spawnDistance;
+            previewWorldPosition = activeCamera.transform.position + activeCamera.transform.TransformDirection(controllerOffset);
+        }
 
         // 仮置きオブジェクトの位置を更新
         previewObject.transform.position = previewWorldPosition;
@@ -244,5 +273,40 @@ public class ObjectSpawner : MonoBehaviour
         {
             limit.currentCount = 0;
         }
+    }
+
+    public void OnSwitchObject(InputValue value)
+    {
+        float direction = value.Get<float>(); // -1: 左ショルダー, 1: 右ショルダー
+        currentObjectIndex = Mathf.Clamp(currentObjectIndex + (int)direction, 0, objectsToSpawn.Length - 1);
+
+        if (isPreviewing)
+        {
+            Destroy(previewObject);
+            ShowPreview();
+        }
+    }
+
+    public void OnPlaceObject(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            if (!isPreviewing)
+                ShowPreview();
+            else
+                PlaceObject();
+        }
+    }
+
+    public void OnPreviewMove(InputValue value)
+    {
+        leftStickInput = value.Get<Vector2>();
+    }
+
+    public void OnAdjustDistance(InputValue value)
+    {
+        rightStickInput = value.Get<Vector2>();
+        spawnDistance += rightStickInput.y * scrollSpeed * Time.deltaTime;
+        spawnDistance = Mathf.Clamp(spawnDistance, spawnDistanceMin, spawnDistanceMax);
     }
 }

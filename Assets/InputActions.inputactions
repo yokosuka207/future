@@ -1,0 +1,172 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "DefenseMecharnism",
+            "id": "185c3bdb-a0c4-4b69-a9c8-59478dba05bb",
+            "actions": [
+                {
+                    "name": "SwitchObject",
+                    "type": "Button",
+                    "id": "0f5753b9-cba8-43ec-ad59-10a049485c71",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceObject",
+                    "type": "Button",
+                    "id": "a2295beb-d91d-4360-90fa-c22e1e8e91f8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PreviewMove",
+                    "type": "Value",
+                    "id": "a5c766ea-4f71-4826-b8c1-5038262f7be6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AdjustDistance",
+                    "type": "Value",
+                    "id": "a3eecb5b-d217-46f3-8238-a794dd6d26af",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "309ba6ed-a9b6-404e-b1d1-709b66693ea9",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d7bac3f-d8cc-488a-8dd5-2565fb902d50",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b5c4b71-87ba-4e2d-9a2c-b762c1156aa3",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c392843d-65b1-4ca5-8e18-6d36bc00ce70",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PreviewMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74db29af-2a46-4c5d-aa3d-19a6adf917db",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AdjustDistance",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player",
+            "id": "8c05525d-9ccd-4f0c-b4ce-5ec30819ed20",
+            "actions": [
+                {
+                    "name": "camera",
+                    "type": "Button",
+                    "id": "df30b550-1365-4045-86a8-751f790b333e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3ea8143e-fa56-4583-bc58-591c261e6868",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "36651e8a-7502-47ad-81ad-d9d97942a36a",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "f60acadc-7cf2-4ea4-9aef-a2abdfc13fc1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "038121d4-6a1d-48b7-9acb-185cabfb27c5",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d39fba67-ad6f-468c-b390-09b70516e375",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
