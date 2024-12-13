@@ -8,7 +8,7 @@ public class ShockwaveSettings
     public Vector3 position;
     public float duration = 5.0f;
     public float startTime = 1.0f;
-    public float growthRate = 0.5f;             // ‰ŠúŠg‘å‘¬“x
+    public float growthRate = 0.1f;             // ‰ŠúŠg‘å‘¬“x
     public float maxGrowthRate = 15.0f;         // Šg‘å‘¬“x‚ÌãŒÀ
     public float growthAcceleration = 0.1f;     // Šg‘å‰Á‘¬“x
     public float growthDeceleration = 0.001f;   // Šg‘åŒ¸‘¬“x
