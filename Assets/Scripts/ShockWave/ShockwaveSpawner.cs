@@ -2,35 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShockwaveSpawner : MonoBehaviour
+[System.Serializable]
+public class ShockwaveSettings
 {
+    public Vector3 position;
+    public float duration = 5.0f;
+    public float startTime = 1.0f;
+    public float growthRate = 0.5f;             // 初期拡大速度
+    public float maxGrowthRate = 15.0f;         // 拡大速度の上限
+    public float growthAcceleration = 0.1f;     // 拡大加速度
+    public float growthDeceleration = 0.001f;   // 拡大減速度
+    public float maxScale = 5.0f;               // 最大スケール
+}
+
+public class ShockwaveSpawner : MonoBehaviour
+{ 
     public GameObject shockwavePrefab; // 衝撃波のプレハブ
-    public List<Vector3> spawnPositions; // 各衝撃波の生成位置リスト
-    public List<float> durations; // 各衝撃波の持続時間リスト
-    public List<float> startTimes; // 各衝撃波の発生開始時間リスト
+    public List<ShockwaveSettings> shockwaveSettings; // 衝撃波ごとの設定リスト
 
     void Start()
     {
-        // 各位置に対してコルーチンを開始し、発生開始時間を適用
-        for (int i = 0; i < spawnPositions.Count; i++)
+        foreach (var settings in shockwaveSettings)
         {
-            float startTime = (i < startTimes.Count) ? startTimes[i] : 0f; // 開始時間がリストにない場合は0秒
-            float duration = (i < durations.Count) ? durations[i] : 5.0f; // 持続時間がリストにない場合は5秒
-            Vector3 position = spawnPositions[i];
-
-            StartCoroutine(SpawnShockwaveWithDelay(position, duration, startTime));
+            StartCoroutine(SpawnShockwaveWithDelay(settings));
         }
     }
-
-    private IEnumerator SpawnShockwaveWithDelay(Vector3 position, float duration, float delay)
+    private IEnumerator SpawnShockwaveWithDelay(ShockwaveSettings settings)
     {
-        // 開始時間まで待機
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(settings.startTime);
 
-        // 衝撃波のインスタンスを生成
-        GameObject shockwave = Instantiate(shockwavePrefab, position, Quaternion.identity);
+        GameObject shockwave = Instantiate(shockwavePrefab, settings.position, Quaternion.identity);
 
-        // 持続時間後に削除
-        Destroy(shockwave, duration);
+        ShockwaveCollider collider = shockwave.GetComponent<ShockwaveCollider>();
+        if (collider != null)
+        {
+            collider.Initialize(settings);
+        }
+
+        Destroy(shockwave, settings.duration);
     }
 }

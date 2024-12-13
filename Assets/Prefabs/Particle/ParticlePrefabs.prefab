@@ -4954,13 +4954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae1869ed4b3f9942b580bd493ab15d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  growthRate: 1
-  maxGrowthRate: 30
-  growthAcceleration: 0.1
-  growthDeceleration: 0.001
+  damage: 10
   minGrowthRate: 0.001
   shrinkRate: 100
   minScale: 1
-  maxScale: 5
   accelerationBoost: 10

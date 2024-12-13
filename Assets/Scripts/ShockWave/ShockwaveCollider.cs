@@ -1,19 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShockwaveCollider : MonoBehaviour
 {
+    private float growthRate;
+    private float maxGrowthRate;
+    private float growthAcceleration;
+    private float growthDeceleration;
+    private float maxScale;
+
     [SerializeField] private int damage = 10; // ダメージ量
-    [SerializeField] private float growthRate = 5.0f; // 初期拡大速度
-    [SerializeField] private float maxGrowthRate = 15.0f; // 拡大速度の上限
-    [SerializeField] private float growthAcceleration = 0.1f; // 拡大加速度
-    [SerializeField] private float growthDeceleration = 0.001f; // 拡大減速度
-    [SerializeField] private float minGrowthRate = 0.001f; // 最小拡大速度
+    [SerializeField] private float minGrowthRate = 0.0001f; // 最小拡大速度
     [SerializeField] private float shrinkRate = 100.0f; // 縮小速度
     [SerializeField] private float minScale = 1.0f; // 最小スケール
-    [SerializeField] private float maxScale = 5.0f; // 最大スケール
-    [SerializeField] private float accelerationBoost = 10.0f; // 加速処理で一時的に増加する拡大速度
+    [SerializeField] private float accelerationBoost = 100.0f; // 加速処理で一時的に増加する拡大速度
 
     private SphereCollider sphereCollider;
     private float currentGrowthRate; // 現在の拡大速度
@@ -25,6 +27,14 @@ public class ShockwaveCollider : MonoBehaviour
         return damage;
     }
 
+    private void SyncColliderToScale()
+    {
+        if (sphereCollider != null)
+        {
+            sphereCollider.radius = Mathf.Round(transform.localScale.x / 1.0f * 1000f) / 1000f; // 小数点以下3桁で丸める
+        }
+    }
+
     private void Start()
     {
         // SphereColliderを取得
@@ -33,9 +43,6 @@ public class ShockwaveCollider : MonoBehaviour
         {
             Debug.LogError("ShockwaveCollider requires a SphereCollider.");
         }
-
-        // 拡大速度の初期値を設定
-        currentGrowthRate = growthRate;
     }
 
     private void Update()
@@ -57,7 +64,7 @@ public class ShockwaveCollider : MonoBehaviour
         {
             currentGrowthRate += growthAcceleration * Time.deltaTime;
         }
-        else if (currentGrowthRate > minGrowthRate)
+        else if (currentGrowthRate > 0)
         {
             currentGrowthRate -= growthDeceleration * Time.deltaTime;
         }
@@ -67,38 +74,35 @@ public class ShockwaveCollider : MonoBehaviour
         {
             float scaleIncrement = currentGrowthRate * Time.deltaTime;
             transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
-
-            // コライダーの半径をスケールに同期
-            if (sphereCollider != null)
-            {
-                sphereCollider.radius = transform.localScale.x / 2.0f;
-            }
         }
         else
         {
-            // 最大スケールに達したら縮小を開始
             isShrinking = true;
         }
     }
 
+    internal void Initialize(ShockwaveSettings settings)
+    {
+        this.growthRate = settings.growthRate;
+        this.maxGrowthRate = settings.maxGrowthRate;
+        this.growthAcceleration = settings.growthAcceleration;
+        this.growthDeceleration = settings.growthDeceleration;
+        this.maxScale = settings.maxScale;
+
+        this.currentGrowthRate = this.growthRate;
+    }
+
     private void Shrink()
     {
-        // Shockwaveのスケールを徐々に縮小
         if (transform.localScale.x > minScale)
         {
             float scaleDecrement = shrinkRate * Time.deltaTime;
             transform.localScale -= new Vector3(scaleDecrement, scaleDecrement, scaleDecrement);
 
-            // コライダーの半径をスケールに同期
-            if (sphereCollider != null)
-            {
-                sphereCollider.radius = transform.localScale.x / 2.0f;
-            }
+            SyncColliderToScale(); // スケールとコライダーを同期
         }
         else
         {
-            // 最小スケールに達したらオブジェクトを削除
-            Debug.Log("Shockwave has shrunk to its minimum size and will be destroyed.");
             Destroy(gameObject);
         }
     }
@@ -109,6 +113,7 @@ public class ShockwaveCollider : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Shockwave hit the Player!");
+            
         }
 
         // "Diffence"タグのオブジェクトに衝突した場合

@@ -10,6 +10,9 @@ TagManager:
   - Radar
   - DefenseMechanism
   - SceneManager
+  - Acceleration
+  - Deceleration
+  - ShrinkTrigger
   layers:
   - Default
   - TransparentFX
