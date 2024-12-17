@@ -13,6 +13,11 @@ public class SoundWave : MonoBehaviour
 
     [SerializeField] private Slider HPbar;
 
+    [SerializeField] private Canvas GameOverUI;
+
+    public CameraShake mainCameraShake;
+    public CameraShake subCameraShake;
+
     //public CameraShake mainCameraShake;
     //public CameraShake subCameraShake;
 
@@ -33,7 +38,7 @@ public class SoundWave : MonoBehaviour
     {
         // 衝撃波との当たり判定
         if (other.gameObject.tag == "ShockWave")
-            TakeDamage();
+            //TakeDamage();
 
         // ゴールとの衝突判定
         if(other.CompareTag("Goal"))
@@ -41,25 +46,20 @@ public class SoundWave : MonoBehaviour
     }
 
     // ダメージ計算
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        // 衝撃波のダメージ引用
-        ShockwaveCollider ss;
-        GameObject obj = GameObject.FindGameObjectWithTag("ShockWave");
-        ss = obj.GetComponent<ShockwaveCollider>();
-
         // ダメージ計算
-        //currentHealth -= ss.Damage();
+        currentHealth -= damage;
 
         //HPバーの減少
-        HPbar.GetComponent<HPBarController>().HealthDecreese();
-        
+        HPbar.GetComponent<HPBarController>().HealthDecreese(damage);
 
-        //// メインカメラを揺らす
-        //StartCoroutine(mainCameraShake.Shake());
 
-        //// サブカメラを揺らす
-        //StartCoroutine(subCameraShake.Shake());
+        // メインカメラを揺らす
+        StartCoroutine(mainCameraShake.Shake());
+
+        // サブカメラを揺らす
+        StartCoroutine(subCameraShake.Shake());
 
 
         Debug.Log(currentHealth);
@@ -67,7 +67,13 @@ public class SoundWave : MonoBehaviour
         // 死亡処理
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            //ゲームを中断
+            Time.timeScale = 0;
+
+            //ゲームオーバーUIを起動
+            GameOverUI.gameObject.SetActive(true);
+
+            
         }
     }
 

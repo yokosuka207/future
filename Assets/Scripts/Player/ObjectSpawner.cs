@@ -11,7 +11,9 @@ public class ObjectSpawner : MonoBehaviour
     public float spawnDistanceMin = 1.0f;
     public float spawnDistanceMax = 20.0f;
     public ObjectPlacementLimit[] placementLimits; // オブジェクトごとの設定
-    
+    [SerializeField] private GameObject diffenceUI;
+    [SerializeField] private GameObject player;
+
     private Material originalMaterial;
     private GameObject previewObject;        // 仮置きオブジェクト
     private bool isPreviewing = false;       // 仮置き状態フラグ
@@ -34,26 +36,32 @@ public class ObjectSpawner : MonoBehaviour
 
     void Update()
     {
-        HandleObjectSwitch(); // テンキー入力でオブジェクトを切り替え
-        HandleMouseScroll();
+        
 
-        if (Input.GetMouseButtonDown(0))
+        if(player.GetComponent<SoundWave>().currentHealth > 0)
         {
-            if (!isPreviewing)
+            HandleObjectSwitch(); // テンキー入力でオブジェクトを切り替え
+            HandleMouseScroll();
+
+            if (Input.GetMouseButtonDown(0))
             {
-                ShowPreview();
+                if (!isPreviewing)
+                {
+                    ShowPreview();
+                }
+                else
+                {
+                    PlaceObject();
+                }
             }
-            else
+
+            // 仮置き中かつ previewObject が null でない場合のみ更新
+            if (isPreviewing && previewObject != null)
             {
-                PlaceObject();
+                UpdatePreviewPosition();
             }
         }
-
-        // 仮置き中かつ previewObject が null でない場合のみ更新
-        if (isPreviewing && previewObject != null)
-        {
-            UpdatePreviewPosition();
-        }
+        
     }
 
 
@@ -242,6 +250,8 @@ public class ObjectSpawner : MonoBehaviour
         if (collider != null)
         {
             collider.enabled = true;
+            //UI表示スクリプトに個数チェックを指示する
+            diffenceUI.GetComponent<UIDiffenceCount>().CheckDiffenceNum(currentObjectIndex);
         }
 
         // 確定配置時にマテリアルを元に戻す

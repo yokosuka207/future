@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ShockwaveCollider : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ShockwaveCollider : MonoBehaviour
     private float growthDeceleration;
     private float maxScale;
 
-    [SerializeField] private int damage = 10; // ダメージ量
+    [SerializeField] private int damage = 20; // ダメージ量
     [SerializeField] private float minGrowthRate = 0.0001f; // 最小拡大速度
     [SerializeField] private float shrinkRate = 100.0f; // 縮小速度
     [SerializeField] private float minScale = 1.0f; // 最小スケール
@@ -20,6 +21,10 @@ public class ShockwaveCollider : MonoBehaviour
     private SphereCollider sphereCollider;
     private float currentGrowthRate; // 現在の拡大速度
     private bool isShrinking = false; // 縮小中かどうかのフラグ
+
+    [SerializeField] private AudioClip sound1;
+    [SerializeField] private AudioMixerGroup audioMixer;
+    AudioSource audioSource;
 
     // ダメージ量を返すプロパティ
     public int Damage()
@@ -31,7 +36,7 @@ public class ShockwaveCollider : MonoBehaviour
     {
         if (sphereCollider != null)
         {
-            sphereCollider.radius = Mathf.Round(transform.localScale.x / 1.0f * 1000f) / 1000f; // 小数点以下3桁で丸める
+            sphereCollider.radius = Mathf.Round(transform.localScale.x / 2); // 小数点以下3桁で丸める
         }
     }
 
@@ -43,10 +48,18 @@ public class ShockwaveCollider : MonoBehaviour
         {
             Debug.LogError("ShockwaveCollider requires a SphereCollider.");
         }
+
+        //オーディオソースをいじれるようにする
+        audioSource = this.GetComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup = audioMixer;
+
+        //サウンドを流す
+        audioSource.PlayOneShot(sound1);
     }
 
     private void Update()
     {
+        SyncColliderToScale();
         if (isShrinking)
         {
             Shrink();
@@ -113,13 +126,17 @@ public class ShockwaveCollider : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Shockwave hit the Player!");
-            
+            GameObject obj = GameObject.FindGameObjectWithTag("Player");
+            obj.GetComponent<SoundWave>().TakeDamage(damage);
+            audioSource.Stop();
+            Destroy(gameObject);
         }
 
         // "Diffence"タグのオブジェクトに衝突した場合
         if (other.CompareTag("Diffence"))
         {
             Debug.Log("Shockwave hit a Diffence and will be destroyed.");
+            audioSource.Stop();
             Destroy(gameObject);
         }
 

@@ -33,6 +33,9 @@ public class ShockwaveSpawner : MonoBehaviour
 
         GameObject shockwave = Instantiate(shockwavePrefab, settings.position, Quaternion.identity);
 
+        //ÉåÅ[É_Å[Ç…âfÇ∑
+        GameObject.FindWithTag("Radar").GetComponent<RadarController>().SpownRadarShock(shockwave);
+
         ShockwaveCollider collider = shockwave.GetComponent<ShockwaveCollider>();
         if (collider != null)
         {

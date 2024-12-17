@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HPBarController : MonoBehaviour
 {
-    float HP = 10;
+    float HP = 100;
     public Slider healthBar;
 
     // Start is called before the first frame update
@@ -17,12 +17,12 @@ public class HPBarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = HP;
+        healthBar.value = HP / 10;
     }
 
-    public void HealthDecreese()
+    public void HealthDecreese(int damage)
     {
-        HP -= 2;
+        HP -= damage;
     }
 
 }

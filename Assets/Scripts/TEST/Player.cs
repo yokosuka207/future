@@ -7,15 +7,14 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("ShockWave")) // 敵と衝突した場合
-        {
+        //if (collision.gameObject.CompareTag("ShockWave")) // 敵と衝突した場合
+        //{
+        //    Debug.Log("カメラシェイク");
+        //    // メインカメラを揺らす
+        //    StartCoroutine(mainCameraShake.Shake());
 
-            Debug.Log("カメラシェイク");
-            // メインカメラを揺らす
-            StartCoroutine(mainCameraShake.Shake());
-
-            // サブカメラを揺らす
-            StartCoroutine(subCameraShake.Shake());
-        }
+        //    // サブカメラを揺らす
+        //    StartCoroutine(subCameraShake.Shake());
+        //}
     }
 }

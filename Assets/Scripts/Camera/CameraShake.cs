@@ -29,6 +29,11 @@ public class CameraShake : MonoBehaviour
 
     public IEnumerator Shake()
     {
+        if (gameObject.GetComponent<SoundWave>().currentHealth <= 0)
+        {
+            yield break;
+        }
+
         if (cameraChildren == null || cameraChildren.Length == 0) yield break;
 
         // 子オブジェクトの元のローカル位置を記憶
@@ -65,6 +70,11 @@ public class CameraShake : MonoBehaviour
 
     public IEnumerator Shake(float customDuration, float customMagnitude)
     {
+        if (gameObject.GetComponent<SoundWave>().currentHealth <= 0)
+        {
+            yield break;
+        }
+
         if (cameraChildren == null || cameraChildren.Length == 0) yield break;
 
         // 子オブジェクトの元のローカル位置を記憶
@@ -98,4 +108,5 @@ public class CameraShake : MonoBehaviour
             cameraChildren[i].localPosition = originalLocalPositions[i];
         }
     }
+
 }
