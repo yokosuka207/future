@@ -555,7 +555,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0f0b866e9ac038b4382737efa077d33c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb941540596033d498b9c17c0380a7e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1000,7 +1000,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fa99bf4bb25477c4cb41d1ecb6ef0b9c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1a030aeb6149f034d8197da074b63ce2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.05
   m_Pitch: 1
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0f0b866e9ac038b4382737efa077d33c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb941540596033d498b9c17c0380a7e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2432,7 +2432,7 @@ MonoBehaviour:
   level1: {fileID: 164994242}
   level2: {fileID: 299180526}
   level3: {fileID: 875611877}
-  selectSound: {fileID: 8300000, guid: d9ab75810db5f9b48a7c031632dcf52a, type: 3}
+  selectSound: {fileID: 8300000, guid: 26c6db637fbc25c488cd658d999f347a, type: 3}
   sceneChenge: {fileID: 225693085}
 --- !u!4 &811229754
 Transform:
@@ -2583,7 +2583,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0f0b866e9ac038b4382737efa077d33c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb941540596033d498b9c17c0380a7e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3045,7 +3045,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b0710232ad4dbb34791dde042e76b416, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d0220f0767d2c954d881c4940b9da49a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3120,7 +3120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 20e571e85fa2f2940b52c904f1beb5fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 338bfef2f1841f344ae5930d088f4c3d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3670,8 +3670,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u521D\u5FC3\u8005\u30B9\u30C6\u30FC\u30B8\n\u521D\u3081\u3066\u3053\u306E\u30B2\u30FC\u30E0\u3092\u30D7\u30EC\u30A4\u3059\u308B\u4EBA\u306B\u30AA\u30B9\u30B9\u30E1\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2188ba3c9ffd59b4d8c68b378773b0a4, type: 2}
-  m_sharedMaterial: {fileID: -7909463908155359820, guid: 2188ba3c9ffd59b4d8c68b378773b0a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3986,8 +3986,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u4E2D\u7D1A\u8005\u30B9\u30C6\u30FC\u30B8\n\u30B2\u30FC\u30E0\u3092\u3088\u304F\u30D7\u30EC\u30A4\u3059\u308B\u4EBA\u306B\u30AA\u30B9\u30B9\u30E1\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2188ba3c9ffd59b4d8c68b378773b0a4, type: 2}
-  m_sharedMaterial: {fileID: -7909463908155359820, guid: 2188ba3c9ffd59b4d8c68b378773b0a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4425,7 +4425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 965086ffae5bf8247a405099a6cd317b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74df0cbf4557105488694083d63a7623, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5068,8 +5068,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u4E0A\u7D1A\u8005\u30B9\u30C6\u30FC\u30B8\n\u30AF\u30EA\u30A2\u3059\u308B\u3053\u3068\u3067\u9AD8\u3044\u9054\u6210\u611F\u3092\u5F97\u3089\u308C\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2188ba3c9ffd59b4d8c68b378773b0a4, type: 2}
-  m_sharedMaterial: {fileID: -7909463908155359820, guid: 2188ba3c9ffd59b4d8c68b378773b0a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

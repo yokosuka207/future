@@ -4961,6 +4961,7 @@ MonoBehaviour:
   shrinkRate: 100
   minScale: 1
   accelerationBoost: 10
+  effect: {fileID: 1099542142532395679, guid: 65be0240024e4a5419af475619f1b207, type: 3}
   sound1: {fileID: 8300000, guid: 002379b48936cb244811a90ee07c3d5b, type: 3}
   audioMixer: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c, type: 2}
 --- !u!82 &-6719170485694220215
