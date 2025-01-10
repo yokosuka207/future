@@ -165,7 +165,7 @@ public class GameOverManager : MonoBehaviour
             if (sceneChange != null && !string.IsNullOrEmpty(scenes[currentIndex]))
             {
                 sceneChange.SetSceneName(scenes[currentIndex]); // 遷移先シーンを設定
-                sceneChange.ChangeScene(); // フェード付きシーン遷移を実行
+                sceneChange.ChangeScene(scenes[currentIndex]); // フェード付きシーン遷移を実行
             }
         }
     }

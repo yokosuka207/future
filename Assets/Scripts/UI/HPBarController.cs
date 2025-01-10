@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class HPBarController : MonoBehaviour
 {
     float HP = 100;
-    public Slider healthBar;
+    [SerializeField] private GameObject[] hpBar;
+    int damageCount;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +18,23 @@ public class HPBarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = HP / 10;
     }
 
     public void HealthDecreese(int damage)
     {
         HP -= damage;
+
+        for(int i = 0; i < 3; i++)
+        {
+            if (damageCount >= 10)
+            {
+                break;
+            }
+            hpBar[damageCount].SetActive(false);
+            damageCount++;
+
+            
+        }
     }
 
 }

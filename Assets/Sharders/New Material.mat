@@ -25,6 +25,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _QueueControl: 0
     - _RimLevel: 0.2
     m_Colors:
     - _MixColor: {r: 0.9350444, g: 0.96981126, b: 0.93842316, a: 0}

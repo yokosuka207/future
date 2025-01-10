@@ -7,6 +7,7 @@ public class GameOverTrigger : MonoBehaviour
     public string sceneName;
     [SerializeField] private GameObject effectObj;
     [SerializeField] private GameObject sceneManager;
+    [SerializeField] private GameObject saveData;
 
     // トリガーコライダーに他のオブジェクトが触れたときに呼び出されるメソッド
     private void OnTriggerEnter(Collider other)
@@ -40,8 +41,11 @@ public class GameOverTrigger : MonoBehaviour
         // パーティクルを削除
         Destroy(particle);
 
+        //　クリア時のデータを保存
+        saveData.GetComponent<ObjectSpawner>().ClearDataSave();
+
         // シーンを遷移
-        StartCoroutine(sceneManager.GetComponent<SceneChange>().ChangeScene());
+        StartCoroutine(sceneManager.GetComponent<SceneChange>().ChangeScene(sceneName));
         //SceneManager.LoadScene(sceneName);
     }
 }

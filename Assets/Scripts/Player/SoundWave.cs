@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SoundWave : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class SoundWave : MonoBehaviour
     [SerializeField] private float speed = 1.0f;  // 移動速度
     [SerializeField] private GameObject target;
 
-    [SerializeField] private Slider HPbar;
+    [SerializeField] private GameObject HPbar;
 
     [SerializeField] private Canvas GameOverUI;
 
     public CameraShake mainCameraShake;
     public CameraShake subCameraShake;
+
+    [SerializeField] private AudioClip sound1;
+    [SerializeField] private AudioMixerGroup audioMixer;
+    AudioSource audioSource;
 
     //public CameraShake mainCameraShake;
     //public CameraShake subCameraShake;
@@ -24,6 +29,13 @@ public class SoundWave : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+
+        //オーディオソースをいじれるようにする
+        audioSource = this.GetComponent<AudioSource>();
+        audioSource.outputAudioMixerGroup = audioMixer;
+
+        //サウンドを流す
+        audioSource.PlayOneShot(sound1);
     }
 
     // Update is called once per frame
@@ -69,6 +81,9 @@ public class SoundWave : MonoBehaviour
         {
             //ゲームを中断
             Time.timeScale = 0;
+
+            //音楽を停止
+            audioSource.Stop();
 
             //ゲームオーバーUIを起動
             GameOverUI.gameObject.SetActive(true);

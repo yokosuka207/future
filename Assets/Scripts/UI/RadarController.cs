@@ -49,7 +49,8 @@ public class RadarController : MonoBehaviour
                     shockWaveRadar[n].enabled = true;
                 } 
             }
-            shockWaveRadar[n].transform.position = new Vector3(((playerPos.z - shockPos.z) * ratioCheck) + radarCheck.x, ((shockPos.x - playerPos.x) * ratioCheck) + radarCheck.y, 0);
+            shockWaveRadar[n].transform.position = new Vector3(((playerPos.z - shockPos.z) * (gameObject.transform.position.x / ratioCheck)) + (gameObject.transform.position.x * radarCheck.x), ((shockPos.x - playerPos.x) * (gameObject.transform.position.x / ratioCheck)) + (gameObject.transform.position.y * radarCheck.y), 0);
+            //Debug.Log(gameObject.transform.position);
         } 
     }
 

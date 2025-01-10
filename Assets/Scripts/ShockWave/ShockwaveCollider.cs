@@ -17,6 +17,7 @@ public class ShockwaveCollider : MonoBehaviour
     [SerializeField] private float shrinkRate = 100.0f; // 縮小速度
     [SerializeField] private float minScale = 1.0f; // 最小スケール
     [SerializeField] private float accelerationBoost = 100.0f; // 加速処理で一時的に増加する拡大速度
+    [SerializeField] private GameObject effect;
 
     private SphereCollider sphereCollider;
     private float currentGrowthRate; // 現在の拡大速度
@@ -25,6 +26,8 @@ public class ShockwaveCollider : MonoBehaviour
     [SerializeField] private AudioClip sound1;
     [SerializeField] private AudioMixerGroup audioMixer;
     AudioSource audioSource;
+    private bool stopFlag;
+    private float saveGrowthRate;
 
     // ダメージ量を返すプロパティ
     public int Damage()
@@ -36,7 +39,9 @@ public class ShockwaveCollider : MonoBehaviour
     {
         if (sphereCollider != null)
         {
-            sphereCollider.radius = Mathf.Round(transform.localScale.x / 2); // 小数点以下3桁で丸める
+            sphereCollider.radius = 0.5f;
+            //sphereCollider.radius = transform.localScale.x / 2; // 小数点以下3桁で丸める
+            //Debug.Log(new Vector2(sphereCollider.radius,transform.localScale.x));
         }
     }
 
@@ -68,6 +73,12 @@ public class ShockwaveCollider : MonoBehaviour
         {
             Expand();
         }
+
+        if(Time.timeScale == 0 && stopFlag == false)
+        {
+            SoundStop();
+            stopFlag = true;
+        }
     }
 
     private void Expand()
@@ -90,8 +101,10 @@ public class ShockwaveCollider : MonoBehaviour
         }
         else
         {
-            isShrinking = true;
+            EffectSpown();
+            Destroy(this.gameObject);
         }
+        SyncColliderToScale(); // スケールとコライダーを同期
     }
 
     internal void Initialize(ShockwaveSettings settings)
@@ -103,6 +116,7 @@ public class ShockwaveCollider : MonoBehaviour
         this.maxScale = settings.maxScale;
 
         this.currentGrowthRate = this.growthRate;
+        saveGrowthRate = this.growthRate;
     }
 
     private void Shrink()
@@ -116,7 +130,9 @@ public class ShockwaveCollider : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            isShrinking = false;
+            this.currentGrowthRate = saveGrowthRate;
         }
     }
 
@@ -137,6 +153,7 @@ public class ShockwaveCollider : MonoBehaviour
         {
             Debug.Log("Shockwave hit a Diffence and will be destroyed.");
             audioSource.Stop();
+            EffectSpown();
             Destroy(gameObject);
         }
 
@@ -157,6 +174,7 @@ public class ShockwaveCollider : MonoBehaviour
         {
             Debug.Log("Shockwave collided with a ShrinkTrigger and will start shrinking.");
             isShrinking = true; // 縮小モードを有効にする
+            //other.GetComponentInParent<ShrinkDestroy>().DestroyShrink();
         }
     }
 
@@ -188,4 +206,14 @@ public class ShockwaveCollider : MonoBehaviour
         Debug.Log($"Scale growth rate temporarily reduced: {currentGrowthRate}");
     }
 
+    private void SoundStop()
+    {
+        audioSource.Stop();
+    }
+
+    private void EffectSpown()
+    {
+        GameObject effectP = Instantiate(effect, this.gameObject.transform.position, Quaternion.identity);
+        effectP.GetComponent<DiffenceEffect>().ShockwaveRadius = transform.localScale.x;
+    }
 }

@@ -13,6 +13,7 @@ public class ObjectSpawner : MonoBehaviour
     public ObjectPlacementLimit[] placementLimits; // オブジェクトごとの設定
     [SerializeField] private GameObject diffenceUI;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject ClearDeta;
 
     private Material originalMaterial;
     private GameObject previewObject;        // 仮置きオブジェクト
@@ -67,8 +68,7 @@ public class ObjectSpawner : MonoBehaviour
 
     void Start()
     {
-        // シーンをまたいでオブジェクトを保持する
-        DontDestroyOnLoad(gameObject);
+        
 
         placementLimitsDict = new Dictionary<GameObject, ObjectPlacementLimit>();
 
@@ -162,9 +162,11 @@ public class ObjectSpawner : MonoBehaviour
 
         // 仮置き状態にするためにColliderを無効化
         Collider collider = previewObject.GetComponent<Collider>();
+        GameObject collider2 = previewObject.transform.GetChild(0).gameObject;
         if (collider != null)
         {
             collider.enabled = false;
+            collider2.SetActive(false);
         }
 
         isPreviewing = true; // 仮置き状態を設定
@@ -247,12 +249,16 @@ public class ObjectSpawner : MonoBehaviour
 
         // 確定配置時にColliderを有効化
         Collider collider = previewObject.GetComponent<Collider>();
+        GameObject collider2 = previewObject.transform.GetChild(0).gameObject;
         if (collider != null)
         {
             collider.enabled = true;
+            collider2.SetActive(true);
             //UI表示スクリプトに個数チェックを指示する
             diffenceUI.GetComponent<UIDiffenceCount>().CheckDiffenceNum(currentObjectIndex);
         }
+
+
 
         // 確定配置時にマテリアルを元に戻す
         Renderer renderer = previewObject.GetComponent<Renderer>();
@@ -318,5 +324,18 @@ public class ObjectSpawner : MonoBehaviour
         rightStickInput = value.Get<Vector2>();
         spawnDistance += rightStickInput.y * scrollSpeed * Time.deltaTime;
         spawnDistance = Mathf.Clamp(spawnDistance, spawnDistanceMin, spawnDistanceMax);
+    }
+
+    public void ClearDataSave()
+    {
+        Vector2[] diffenceSave = new Vector2[4];
+        for(int i = 0; i < 4; i++)
+        {
+            diffenceSave[i].x = placementLimits[i].maxCount;
+            diffenceSave[i].y = placementLimits[i].currentCount;
+        }
+        int life = GameObject.FindWithTag("Player").GetComponent<SoundWave>().currentHealth;
+        GameObject clearData = Instantiate(ClearDeta);
+        clearData.GetComponent<ClearDeta>().SaveClearDeta(diffenceSave, life);
     }
 }

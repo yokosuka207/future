@@ -13,6 +13,7 @@ TagManager:
   - Acceleration
   - Deceleration
   - ShrinkTrigger
+  - ClearDeta
   layers:
   - Default
   - TransparentFX

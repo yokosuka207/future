@@ -27,7 +27,7 @@ public class UIDiffenceCount : MonoBehaviour
             diffenceManagement[diffence.diffenceIndex].diffenceNum = diffenceManagement[diffence.diffenceIndex].diffenceMachine.GetComponentInChildren<TextMeshProUGUI>();
             diffenceManagement[diffence.diffenceIndex].maxCount = diffenceMechanism.GetComponent<ObjectSpawner>().placementLimits[diffenceManagement[diffence.diffenceIndex].diffenceIndex].maxCount;
             diffenceManagement[diffence.diffenceIndex].diffenceNum.text = diffenceManagement[diffence.diffenceIndex].maxCount.ToString();
-            diffenceManagement[diffence.diffenceIndex].diffenceMachine.transform.GetChild(2).gameObject.SetActive(false);
+            diffenceManagement[diffence.diffenceIndex].diffenceMachine.transform.GetChild(3).gameObject.SetActive(false);
         }
         
     }
@@ -49,7 +49,7 @@ public class UIDiffenceCount : MonoBehaviour
                 diffenceManagement[diffence.diffenceIndex].diffenceNum.text = num.ToString();
                 if (num == 0)
                 {
-                    diffenceManagement[diffence.diffenceIndex].diffenceMachine.transform.GetChild(2).gameObject.SetActive(true);
+                    diffenceManagement[diffence.diffenceIndex].diffenceMachine.transform.GetChild(3).gameObject.SetActive(true);
                 }
             }
 
