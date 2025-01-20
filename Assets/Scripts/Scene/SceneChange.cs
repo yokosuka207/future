@@ -12,6 +12,7 @@ public class SceneChange : MonoBehaviour
     [SerializeField] private bool viewScene;
     [SerializeField] private float elapsedTime;
     [SerializeField] private bool titleScene;
+    [SerializeField] private bool tutorialScene;
 
     private bool isFading = false;
     private float currentTime;
@@ -66,6 +67,15 @@ public class SceneChange : MonoBehaviour
         if(titleScene == true)
         {
             if (Input.anyKeyDown && !isFading)
+            {
+                sceneChangeFlug = true;
+            }
+        }
+
+        //チュートリアルの場合Escでシーンチェンジ
+        if(tutorialScene == true)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && !isFading)
             {
                 sceneChangeFlug = true;
             }

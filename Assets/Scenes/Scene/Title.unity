@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c0b2c41675145042a117a7d774b5a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: LevelSelect
+  sceneName: tutorial
   transitionKey: 282
   fadeDuration: 1
   fadeImage: {fileID: 1727804426}

@@ -14,6 +14,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] private GameObject diffenceUI;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject ClearDeta;
+    private bool tutorial;
 
     private Material originalMaterial;
     private GameObject previewObject;        // 仮置きオブジェクト
@@ -37,32 +38,33 @@ public class ObjectSpawner : MonoBehaviour
 
     void Update()
     {
-        
-
-        if(player.GetComponent<SoundWave>().currentHealth > 0)
+        if(tutorial == false)
         {
-            HandleObjectSwitch(); // テンキー入力でオブジェクトを切り替え
-            HandleMouseScroll();
-
-            if (Input.GetMouseButtonDown(0))
+            if (player.GetComponent<SoundWave>().currentHealth > 0)
             {
-                if (!isPreviewing)
-                {
-                    ShowPreview();
-                }
-                else
-                {
-                    PlaceObject();
-                }
-            }
+                HandleObjectSwitch(); // テンキー入力でオブジェクトを切り替え
+                HandleMouseScroll();
 
-            // 仮置き中かつ previewObject が null でない場合のみ更新
-            if (isPreviewing && previewObject != null)
-            {
-                UpdatePreviewPosition();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (!isPreviewing)
+                    {
+                        ShowPreview();
+                    }
+                    else
+                    {
+                        PlaceObject();
+                    }
+                }
+
+                // 仮置き中かつ previewObject が null でない場合のみ更新
+                if (isPreviewing && previewObject != null)
+                {
+                    UpdatePreviewPosition();
+                }
             }
         }
-        
+
     }
 
 
@@ -337,5 +339,10 @@ public class ObjectSpawner : MonoBehaviour
         int life = GameObject.FindWithTag("Player").GetComponent<SoundWave>().currentHealth;
         GameObject clearData = Instantiate(ClearDeta);
         clearData.GetComponent<ClearDeta>().SaveClearDeta(diffenceSave, life);
+    }
+
+    public void TutorialSet(bool flug)
+    {
+        tutorial = flug;
     }
 }
