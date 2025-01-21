@@ -31,6 +31,7 @@ public class CameraShake : MonoBehaviour
     {
         if (gameObject.GetComponent<SoundWave>().currentHealth <= 0)
         {
+            duration = 0;
             yield break;
         }
 
@@ -72,6 +73,7 @@ public class CameraShake : MonoBehaviour
     {
         if (gameObject.GetComponent<SoundWave>().currentHealth <= 0)
         {
+            customDuration = 0;
             yield break;
         }
 

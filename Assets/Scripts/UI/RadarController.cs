@@ -15,7 +15,7 @@ public class RadarController : MonoBehaviour
     [SerializeField] private float ratioCheck;
 
     [SerializeField] private Vector2 radarCheck;
-
+    [SerializeField] private GameObject radars;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +70,7 @@ public class RadarController : MonoBehaviour
             shockWaveRadar[i] = Instantiate(enemy);
             use[i] = true;
             shockWaveRadar[i].transform.SetParent(canvas.transform, false);
+            shockWaveRadar[i].transform.SetParent(radars.transform, false);
             shockWaveRadar[i].enabled = false;
             //Debug.Log(shockWave[i].transform.position);
             break;

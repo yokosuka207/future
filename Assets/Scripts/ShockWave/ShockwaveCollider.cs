@@ -102,6 +102,7 @@ public class ShockwaveCollider : MonoBehaviour
         else
         {
             EffectSpown();
+            NearFind();
             Destroy(this.gameObject);
         }
         SyncColliderToScale(); // スケールとコライダーを同期
@@ -145,6 +146,7 @@ public class ShockwaveCollider : MonoBehaviour
             GameObject obj = GameObject.FindGameObjectWithTag("Player");
             obj.GetComponent<SoundWave>().TakeDamage(damage);
             audioSource.Stop();
+            NearFind();
             Destroy(gameObject);
         }
 
@@ -154,6 +156,7 @@ public class ShockwaveCollider : MonoBehaviour
             Debug.Log("Shockwave hit a Diffence and will be destroyed.");
             audioSource.Stop();
             EffectSpown();
+            NearFind();
             Destroy(gameObject);
         }
 
@@ -215,5 +218,12 @@ public class ShockwaveCollider : MonoBehaviour
     {
         GameObject effectP = Instantiate(effect, this.gameObject.transform.position, Quaternion.identity);
         effectP.GetComponent<DiffenceEffect>().ShockwaveRadius = transform.localScale.x;
+    }
+
+    private void NearFind()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        GameObject near = player.transform.Find("disCheck").gameObject;
+        near.GetComponent<disCheck>().vanishEnemy();
     }
 }

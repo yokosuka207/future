@@ -960,6 +960,7 @@ MonoBehaviour:
   viewScene: 0
   elapsedTime: 0
   titleScene: 1
+  tutorialScene: 0
   sceneChangeFlug: 0
 --- !u!4 &225693087
 Transform:
@@ -4167,8 +4168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1717423267}
   - component: {fileID: 1717423266}
+  - component: {fileID: 1717423268}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DestroySaveDeta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4285,6 +4287,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717423268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717423265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6092979c9e1eb4643bdfb4ea37878a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1727804425 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 453917172603960, guid: ed890d591e7a8a44bb33f6ad3e64cbd2, type: 3}
