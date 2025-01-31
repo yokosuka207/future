@@ -28,6 +28,8 @@ public class ShockwaveCollider : MonoBehaviour
     AudioSource audioSource;
     private bool stopFlag;
     private float saveGrowthRate;
+    private GameObject clearGame;
+
 
     // ダメージ量を返すプロパティ
     public int Damage()
@@ -54,6 +56,9 @@ public class ShockwaveCollider : MonoBehaviour
             Debug.LogError("ShockwaveCollider requires a SphereCollider.");
         }
 
+        //ゲームをクリアした判定を確認
+        clearGame = GameObject.FindWithTag("Goal");
+
         //オーディオソースをいじれるようにする
         audioSource = this.GetComponent<AudioSource>();
         audioSource.outputAudioMixerGroup = audioMixer;
@@ -64,6 +69,13 @@ public class ShockwaveCollider : MonoBehaviour
 
     private void Update()
     {
+        if(clearGame.GetComponent<GameOverTrigger>().gameClear == true)
+        {
+            audioSource.Stop();
+            EffectSpown();
+            NearFind();
+            Destroy(this.gameObject);
+        }
         SyncColliderToScale();
         if (isShrinking)
         {
@@ -101,6 +113,7 @@ public class ShockwaveCollider : MonoBehaviour
         }
         else
         {
+            audioSource.Stop();
             EffectSpown();
             NearFind();
             Destroy(this.gameObject);

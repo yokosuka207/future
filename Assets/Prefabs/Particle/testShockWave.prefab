@@ -129,6 +129,7 @@ MonoBehaviour:
   effect: {fileID: 1099542142532395679, guid: 65be0240024e4a5419af475619f1b207, type: 3}
   sound1: {fileID: 8300000, guid: 002379b48936cb244811a90ee07c3d5b, type: 3}
   audioMixer: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c, type: 2}
+  clearGame: {fileID: 1329359794007589614, guid: 70a1f43ff80b7ae419e8cf0a52b004ea, type: 3}
 --- !u!82 &2484791147970774783
 AudioSource:
   m_ObjectHideFlags: 0

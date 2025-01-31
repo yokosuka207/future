@@ -13,6 +13,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private AudioClip selectSound;
     [SerializeField] private GameObject sceneChenge;
     [SerializeField] private float buttonMove;
+    [SerializeField] private float plusBorder;
 
     private int borderSituation;//0 左/1 中/2 右
     private int borderSituationOld;
@@ -32,7 +33,6 @@ public class GameOverUI : MonoBehaviour
     {
         //スクリーンサイズによってボーダーを更新する
         borderPosition = Screen.width / 3;
-        float plusBorder = Screen.width * 10 / 650;
 
         //前フレームの状態を保存
         borderSituationOld = borderSituation;
@@ -40,7 +40,7 @@ public class GameOverUI : MonoBehaviour
 
 
         //マウスポインタがボーダーラインを超えていたら状態を修正
-        if (Input.mousePosition.y <= Screen.height / 5 * 2 + buttonMove && Input.mousePosition.y > Screen.height / 5 * 1 + buttonMove)
+        if (Input.mousePosition.y <= Screen.height / 6 * 2 + buttonMove && Input.mousePosition.y > Screen.height / 6 * 1 + buttonMove)
         {
             if (Input.mousePosition.x >= borderPosition * 2 - plusBorder && borderSituationOld != 2)
             {
@@ -55,10 +55,14 @@ public class GameOverUI : MonoBehaviour
                 borderSituation = 1;
             }
         }
-
+        else
+        {
+            borderSituation = -1;
+        }
+        Debug.Log(borderSituation);
 
         //ボーダーが修正されていたら画像のアクティブを切り替え
-        if (borderSituation != borderSituationOld)
+        if (borderSituation != borderSituationOld && borderSituation >= 0)
         {
             switch (borderSituation)
             {

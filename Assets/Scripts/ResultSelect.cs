@@ -55,10 +55,14 @@ public class ResultSelect : MonoBehaviour
                 borderSituation = 1;
             }
         }
+        else
+        {
+            borderSituation = -1;
+        }
             
 
         //ボーダーが修正されていたら画像のアクティブを切り替え
-        if (borderSituation != borderSituationOld)
+        if (borderSituation != borderSituationOld && borderSituation >= 0)
         {
             switch (borderSituation)
             {

@@ -2310,7 +2310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 0}
+  m_AnchoredPosition: {x: -228, y: 5.1765747}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &381423377
@@ -7809,7 +7809,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -15, y: -30}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 320, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1759141780
 MonoBehaviour:
@@ -7833,8 +7833,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3092\u30B9\u30AD\u30C3\u30D7"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e0ac1acd35157142a4b160eb5bda5c4, type: 2}
+  m_sharedMaterial: {fileID: -7909463908155359820, guid: 0e0ac1acd35157142a4b160eb5bda5c4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10434,7 +10434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007780709258202289, guid: 26a1975b21dae3c49841dda32934edfc, type: 3}
       propertyPath: shockwaveSettings.Array.data[0].growthRate
-      value: 3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 9007780709258202289, guid: 26a1975b21dae3c49841dda32934edfc, type: 3}
       propertyPath: shockwaveSettings.Array.data[0].position.x
@@ -10707,6 +10707,10 @@ PrefabInstance:
     - target: {fileID: 5067747645028490494, guid: 33994132c1a7f7148987d8d1f480f3ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7387028794312818728, guid: 33994132c1a7f7148987d8d1f480f3ed, type: 3}
+      propertyPath: m_DirectAudioMutes.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

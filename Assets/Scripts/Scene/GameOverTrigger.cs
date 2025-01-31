@@ -8,6 +8,14 @@ public class GameOverTrigger : MonoBehaviour
     [SerializeField] private GameObject effectObj;
     [SerializeField] private GameObject sceneManager;
     [SerializeField] private GameObject saveData;
+    [SerializeField] private GameObject ShockSpawn;
+
+    public bool gameClear;
+
+    private void Start()
+    {
+        gameClear = false;
+    }
 
     // トリガーコライダーに他のオブジェクトが触れたときに呼び出されるメソッド
     private void OnTriggerEnter(Collider other)
@@ -21,6 +29,9 @@ public class GameOverTrigger : MonoBehaviour
 
     private IEnumerator GoalDirection()
     {
+        //ゲームクリア通知を衝撃波に送る
+        gameClear = true;
+
         // ゴールオブジェクトを無効化する代わりに、目に見えなくする
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         Collider collider = GetComponent<Collider>();

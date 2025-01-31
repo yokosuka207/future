@@ -13,10 +13,13 @@ public class ShockwaveSettings
     public float growthAcceleration = 0.1f;     // 拡大加速度
     public float growthDeceleration = 0.001f;   // 拡大減速度
     public float maxScale = 5.0f;               // 最大スケール
+    
+
 }
 
 public class ShockwaveSpawner : MonoBehaviour
-{ 
+{
+    public bool gameClear;// ゲームクリアフラグ
     public GameObject shockwavePrefab; // 衝撃波のプレハブ
     public List<ShockwaveSettings> shockwaveSettings; // 衝撃波ごとの設定リスト
 
@@ -41,6 +44,8 @@ public class ShockwaveSpawner : MonoBehaviour
         {
             collider.Initialize(settings);
         }
+
+        
 
         Destroy(shockwave, settings.duration);
     }
